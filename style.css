@@ -55,7 +55,7 @@ nav ul li {
     width: 70%;
     border-radius: 12px;
     padding: 34px;
-    background-image: url('bg1.jpg');
+    background-image: url('./Images/bg1.jpg');
 }
 
 .bottom {
