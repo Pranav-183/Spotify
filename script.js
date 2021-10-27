@@ -3,7 +3,7 @@ console.log('Welcome to Spotify');
 
 //Initialise the variables
 let songIndex = 0;
-let audioElement = new Audio('songs/1.mp3.mp3');
+let audioElement = new Audio('./songs/1.mp3.mp3');
 let masterPlay = document.getElementById('masterPlay');
 let myProgressBar = document.getElementById('myProgressBar');
 let gif = document.getElementById('gif');
@@ -11,16 +11,16 @@ let masterSongName = document.getElementById('masterSongName');
 let songItems = Array.from(document.getElementsByClassName('songItem'));
 
 let songs = [
-    {songName: "Blinding Lights - The Weeknd", filePath: "songs/1.mp3", coverPath: "covers/1.jpg"},
-    {songName: "Someday - One Republic", filePath: "songs/2.mp3", coverPath: "covers/2.jpg"},
-    {songName: "Deserve You - Justin Bieber", filePath: "songs/3.mp3", coverPath: "covers/3.jpg"},
-    {songName: "Night Changes - One Direction", filePath: "songs/4.mp3", coverPath: "covers/4.jpg"},
-    {songName: "Everywhere - Niall Horan", filePath: "songs/5.mp3", coverPath: "covers/5.jpg"},
-    {songName: "What Makes You Beautiful - One Direction", filePath: "songs/6.mp3", coverPath: "covers/6.jpg"},
-    {songName: "Rock Me- One Direction", filePath: "songs/7.mp3", coverPath: "covers/7.jpg"},
-    {songName: "The Nights - Avicii", filePath: "songs/8.mp3", coverPath: "covers/8.jpg"},
-    {songName: "Always You - Louis Tomlinson", filePath: "songs/9.mp3", coverPath: "covers/9.jpg"},
-    {songName: "Story Of My Life - One Direction", filePath: "songs/10.mp3", coverPath: "covers/10.jpg"},
+    {songName: "Blinding Lights - The Weeknd", filePath: "./songs/1.mp3", coverPath: "./covers/1.jpg"},
+    {songName: "Someday - One Republic", filePath: "./songs/2.mp3", coverPath: "./covers/2.jpg"},
+    {songName: "Deserve You - Justin Bieber", filePath: "./songs/3.mp3", coverPath: "./covers/3.jpg"},
+    {songName: "Night Changes - One Direction", filePath: "./songs/4.mp3", coverPath: "./covers/4.jpg"},
+    {songName: "Everywhere - Niall Horan", filePath: "./songs/5.mp3", coverPath: "./covers/5.jpg"},
+    {songName: "What Makes You Beautiful - One Direction", filePath: "./songs/6.mp3", coverPath: "covers/6.jpg"},
+    {songName: "Rock Me- One Direction", filePath: "./songs/7.mp3", coverPath: "./covers/7.jpg"},
+    {songName: "The Nights - Avicii", filePath: "./songs/8.mp3", coverPath: "./covers/8.jpg"},
+    {songName: "Always You - Louis Tomlinson", filePath: "./songs/9.mp3", coverPath: "./covers/9.jpg"},
+    {songName: "Story Of My Life - One Direction", filePath: "./songs/10.mp3", coverPath: "./covers/10.jpg"},
 ]
 
 songItems.forEach((element, i)=>{ 
