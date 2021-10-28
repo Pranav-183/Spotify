@@ -107,7 +107,11 @@ const autoPlay =  () => {
     audioElement.play();
     masterPlay.classList.remove('fa-play-circle');
     masterPlay.classList.add('fa-pause-circle');
-    }
+}
+
+audioElement.addEventListener('ended', (event) => {
+    autoPlay();
+})
 
 document.getElementById('next').addEventListener('click', () => {
     if(songIndex >=7 ) {
