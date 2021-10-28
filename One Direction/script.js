@@ -69,11 +69,11 @@ audioElement.addEventListener('timeupdate', () => {
 })
 
 myProgressBar.addEventListener('change', () => {
-    audioElement.currentTime = myProgressBar.value * audioElement.duration / 100;
+    audioElement.currentTime = (myProgressBar.value * audioElement.duration) / 100;
 })
 
 const makeAllPlays = () => {
-    Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
+    Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) => {
         element.classList.remove('fa-pause-circle');
         element.classList.add('fa-play-circle');
     })
@@ -95,6 +95,20 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) =>
     })
 })
 
+const autoPlay =  () => {
+    if(songIndex >= 7 ) {
+        songIndex = 0
+    } else {
+        songIndex ++
+    }
+    audioElement.src = `songs/${songIndex+1}.mp3`;
+    masterSongName.innerText = songs[songIndex].songName;
+    audioElement.currentTime = 0;
+    audioElement.play();
+    masterPlay.classList.remove('fa-play-circle');
+    masterPlay.classList.add('fa-pause-circle');
+    }
+
 document.getElementById('next').addEventListener('click', () => {
     if(songIndex >=7 ) {
         songIndex = 0
@@ -110,7 +124,6 @@ document.getElementById('next').addEventListener('click', () => {
 })
 
 document.getElementById('previous').addEventListener('click', () => {
-    console.log(songIndex);
     if(songIndex <=0 ) {
         songIndex = 7
     } else {
@@ -123,4 +136,3 @@ document.getElementById('previous').addEventListener('click', () => {
     masterPlay.classList.remove('fa-play-circle');
     masterPlay.classList.add('fa-pause-circle');
 })
-
