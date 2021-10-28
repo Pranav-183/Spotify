@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Varela+Round&display=swap');
 
 body {
-    background-color: antiquewhite;
+    background-color: rgb(255, 255, 255);
 }
 
 * {
@@ -9,8 +9,13 @@ body {
     padding: 0;
 }
 
+h1 {
+    text-align: center;
+}
+
 nav {
     font-family: 'Ubuntu', sans-serif;
+    width: 100%;
 }
 
 nav ul {
@@ -41,4 +46,29 @@ nav ul li {
 .linksForNav a {
     text-decoration: none;
     color: white;
+}
+
+.oneD {
+    display: flex;
+    width: 100%;
+    margin: 5vh 0 10vh 0;
+}
+
+.decade212 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    width: 30vw;
+    cursor: pointer;
+}
+
+.decade212 .card {
+    width: 40vw;
 }

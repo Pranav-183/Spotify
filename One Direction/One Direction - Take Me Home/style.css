@@ -55,12 +55,21 @@ nav ul li {
     display: block;
 }
 
+.dropbtn {
+    padding: 1vh;
+}
+
+.dropbtn:hover {
+    cursor: pointer;
+}
+
 .dropContent {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     z-index: 1;
     transition: all 0.5s;
+    margin-top: 1vh;
 }
 
 .dropContent a:hover {
