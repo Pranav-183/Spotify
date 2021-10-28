@@ -2,6 +2,7 @@
 console.log('Welcome to Spotify');
 
 //Initialise the variables
+
 let songIndex = 0;
 let audioElement = new Audio('./Songs/1.mp3');
 let masterPlay = document.getElementById('masterPlay');
@@ -28,6 +29,7 @@ songItems.forEach((element, i) => {
 })
 
 //Handle Play/Pause Click and Spacebar
+
 masterPlay.addEventListener('click', ()=>{
     if(audioElement.paused || audioElement.currentTime<=0) {
         audioElement.play();
@@ -61,6 +63,7 @@ document.addEventListener('keyup', (event) => {
 })
 
 //Listen to Events
+
 audioElement.addEventListener('timeupdate', () => {
     progress = parseInt((audioElement.currentTime/audioElement.duration) * 100);
     myProgressBar.value = progress;
@@ -69,6 +72,8 @@ audioElement.addEventListener('timeupdate', () => {
 myProgressBar.addEventListener('change', () => {
     audioElement.currentTime = (myProgressBar.value * audioElement.duration) / 100;
 })
+
+//songItem
 
 const makeAllPlays = () => {
     Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) => {
@@ -93,6 +98,8 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) =>
     })
 })
 
+//Autoplay
+
 const autoPlay =  () => {
     if(songIndex >= 7 ) {
         songIndex = 0
@@ -116,6 +123,8 @@ const autoPlay =  () => {
 audioElement.onended = (event) => {
     autoPlay();
 }
+
+//Previous And Next Buttons
 
 document.getElementById('next').addEventListener('click', () => {
     if(songIndex >=7 ) {
