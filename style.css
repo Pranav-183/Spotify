@@ -48,10 +48,33 @@ nav ul li {
     color: white;
 }
 
+/* Card */
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    width: 19vw;
+    cursor: pointer;
+    text-align: center;
+    margin: 0.5rem;
+    padding: 1rem;
+    background-color: #96ccff;
+    box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 20%);
+    border-radius: 0.5rem;
+    border-width: 0.25rem;
+    box-sizing: border-box;
+}
+
 .oneD {
     display: flex;
     width: 100%;
     margin: 5vh 0 10vh 0;
+}
+
+.oneD {
+    padding: 0 2vw;
 }
 
 .decade212 {
@@ -60,15 +83,8 @@ nav ul li {
     justify-content: center;
 }
 
-.card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 30vh;
-    width: 30vw;
-    cursor: pointer;
-}
-
 .decade212 .card {
     width: 40vw;
+    height: 28vh;
+    background-color: lightgreen;
 }

@@ -2,13 +2,16 @@
 console.log('Welcome to Spotify');
 
 //Initialise the variables
-let songIndex = 0;
+let CurrentSongIndex = 0;
 let audioElement = new Audio('./songs/1.mp3');
 let masterPlay = document.getElementById('masterPlay');
 let myProgressBar = document.getElementById('myProgressBar');
 let gif = document.getElementById('gif');
 let masterSongName = document.getElementById('masterSongName');
 let songItems = Array.from(document.getElementsByClassName('songItem'));
+let songItemPlay = Array.from(document.getElementsByClassName('songItemPlay'));
+let next = document.getElementById('next');
+let previous = document.getElementById('previous');
 
 let songs = [
     {songName: "Blinding Lights - The Weeknd", filePath: "./songs/1.mp3", coverPath: "./covers/1.jpg", duration: "03:19"},
@@ -29,10 +32,10 @@ songItems.forEach((element, i)=>{
     element.getElementsByClassName("duration")[0].innerText = songs[i].duration;
 })
 
-// audioElement.play();
+audioElement.play();
 
 //Handle Play/Pause Click
-masterPlay.addEventListener('click', ()=>{
+const masterPlayFunc = () => {
     if(audioElement.paused || audioElement.currentTime<=0) {
         audioElement.play();
         masterPlay.classList.remove('fa-play-circle');
@@ -45,22 +48,21 @@ masterPlay.addEventListener('click', ()=>{
         masterPlay.classList.add('fa-play-circle');
         gif.style.opacity = 0;
     }
+}
+
+document.addEventListener('click', () => {
+    masterPlayFunc();
 })
 
 document.addEventListener('keyup', (event) => {
     if (event.code === 'Space') {
-        if(audioElement.paused || audioElement.currentTime <= 0) {
-            audioElement.play();
-            masterPlay.classList.remove('fa-play-circle');
-            masterPlay.classList.add('fa-pause-circle');
-            gif.style.opacity = 1;
+       masterPlayFunc();
+    }
+})
 
-        } else {
-            audioElement.pause();
-            masterPlay.classList.remove('fa-pause-circle');
-            masterPlay.classList.add('fa-play-circle');
-            gif.style.opacity = 0;
-        }
+document.addEventListener('keyup', (event) => {
+    if (event.key === 'k') {
+        masterPlayFunc();
     }
 })
 
@@ -74,21 +76,22 @@ myProgressBar.addEventListener('change', () => {
     audioElement.currentTime = myProgressBar.value * audioElement.duration / 100;
 })
 
+//songItems
 const makeAllPlays = () => {
-    Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
+    songItemPlay.forEach((element)=>{
         element.classList.remove('fa-pause-circle');
         element.classList.add('fa-play-circle');
     })
 }
 
-Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) => {
-    element.addEventListener('click', (e)=>{ 
+songItemPlay.forEach((element) => {
+    element.addEventListener('click', (e)=>{
         makeAllPlays();
-        songIndex = parseInt(e.target.id);
+        CurrentSongIndex = parseInt(e.target.id);
         e.target.classList.remove('fa-play-circle');
         e.target.classList.add('fa-pause-circle');
-        audioElement.src = `songs/${songIndex+1}.mp3`;
-        masterSongName.innerText = songs[songIndex].songName;
+        audioElement.src = `songs/${CurrentSongIndex+1}.mp3`;
+        masterSongName.innerText = songs[CurrentSongIndex].songName;
         audioElement.currentTime = 0;
         audioElement.play();
         gif.style.opacity = 1;
@@ -97,30 +100,102 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) =>
     })
 })
 
-document.getElementById('next').addEventListener('click', () => {
-    if(songIndex >= 9) {
-        songIndex = 0
-    } else {
-        songIndex ++
+// Change songItem Icons
+
+const playAdd = () => {
+    for (let index = 0; index < songs.length; index++) {
+        if (index !== CurrentSongIndex) {
+            document.getElementById(index).classList.remove('fa-pause-circle');
+            document.getElementById(index).classList.add('fa-play-circle');
+        }
     }
-    audioElement.src = `songs/${songIndex+1}.mp3`;
-    masterSongName.innerText = songs[songIndex].songName;
-    audioElement.currentTime = 0;
-    audioElement.play();
-    masterPlay.classList.remove('fa-play-circle');
-    masterPlay.classList.add('fa-pause-circle');
+}
+
+const pauseAdd = () => {
+    document.getElementById(`${CurrentSongIndex}`).classList.remove('fa-play-circle');
+    document.getElementById(`${CurrentSongIndex}`).classList.add('fa-pause-circle');
+}
+
+audioElement.addEventListener('playing', () => {
+    pauseAdd();
 })
 
-document.getElementById('previous').addEventListener('click', () => {
-    if(songIndex <= 0) {
-        songIndex = 9
+//Autoplay
+
+const autoPlay =  () => {
+    if(CurrentSongIndex >= 7 ) {
+        CurrentSongIndex = 0
     } else {
-        songIndex --
+        CurrentSongIndex ++
     }
-    audioElement.src = `songs/${songIndex+1}.mp3`;
-    masterSongName.innerText = songs[songIndex].songName;
+    audioElement.src = `./Songs/${CurrentSongIndex+1}.mp3`;
+    masterSongName.innerText = songs[CurrentSongIndex].songName;
     audioElement.currentTime = 0;
     audioElement.play();
     masterPlay.classList.remove('fa-play-circle');
     masterPlay.classList.add('fa-pause-circle');
+}
+
+// audioElement.addEventListener('ended', (event) => {
+//     autoPlay();
+// })
+
+//OR
+
+audioElement.onended = (event) => {
+    autoPlay();
+}
+
+// Next Button
+
+const nextFunc = () => {
+    if (CurrentSongIndex >= 9) {
+        CurrentSongIndex = 0
+    } else {
+        CurrentSongIndex ++
+    }
+    audioElement.src = `songs/${CurrentSongIndex+1}.mp3`;
+    masterSongName.innerText = songs[CurrentSongIndex].songName;
+    audioElement.currentTime = 0;
+    audioElement.play();
+    masterPlay.classList.remove('fa-play-circle');
+    masterPlay.classList.add('fa-pause-circle');
+    playAdd();
+}
+
+next.addEventListener('click', () => {
+    nextFunc();
+})
+
+document.addEventListener('keyup', (event) => {
+     if (event.key === 'l') {
+            nextFunc();
+        }
+})
+
+// Previous Button
+
+const previousFunc = () => {
+    if(CurrentSongIndex <= 0) {
+        CurrentSongIndex = 9
+    } else {
+        CurrentSongIndex --
+    }
+    audioElement.src = `songs/${CurrentSongIndex+1}.mp3`;
+    masterSongName.innerText = songs[CurrentSongIndex].songName;
+    audioElement.currentTime = 0;
+    audioElement.play();
+    masterPlay.classList.remove('fa-play-circle');
+    masterPlay.classList.add('fa-pause-circle');
+    playAdd();
+}
+
+previous.addEventListener('click', () => {
+    previousFunc();
+})
+
+document.addEventListener('keyup', (event) => {
+    if (event.key === 'j') {
+        previousFunc();
+    }
 })

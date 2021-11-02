@@ -25,7 +25,15 @@ nav ul {
 }
 
 nav ul li {
-    padding: 0 12px;
+    margin: 0 12px;
+}
+
+nav ul li:first-child:hover {
+    background: black;
+}
+
+nav ul li span:hover , nav ul li:hover {
+    background: red;
 }
 
 .brand img {
@@ -44,6 +52,41 @@ nav ul li {
     text-decoration: none;
     color: white;
 }
+
+.dropdownNav a {
+    text-decoration: none;
+    color: black;
+    padding: 1vh 1vw;
+    display: block;
+}
+
+.dropbtn {
+    padding: 1vh;
+    background: black;
+    height: 5vh; 
+    width: 8vw; 
+    cursor: pointer;
+}
+
+.dropContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    z-index: 1;
+    transition: all 0.5s;
+    margin-top: 1vh;
+}
+
+.dropContent a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropContent {
+    display: block;
+}
+
+
+
 
 .container {
     min-height: 72vh;
