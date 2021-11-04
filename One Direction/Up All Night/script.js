@@ -13,21 +13,23 @@ let songItemPlay = Array.from(document.getElementsByClassName('songItemPlay'));
 let next = document.getElementById('next');
 let previous = document.getElementById('previous');
 let songNumber1 = Array.from(document.getElementsByClassName('songNumber1'));
+let myVolumeBar = document.getElementById('myVolumeBar');
+let volumeIcon = document.getElementById('volumeIcon');
 
 
 let songs = [
-    {songName: "Up All Night - One Direction", filePath: "./Songs/1.mp3", coverPath: "Covers/1.jpg", duration: "03:14", number: "1"},
-    {songName: "What Makes You Beautiful - One Direction", filePath: "./Songs/2.mp3", coverPath: "Covers/2.jpg", duration: "03:21", number: "2"},
-    {songName: "More Than This - One Direction", filePath: "./Songs/3.mp3", coverPath: "Covers/3.jpg", duration: "03:49", number: "3"},
-    {songName: "Stole My Heart - One Direction", filePath: "./Songs/4.mp3", coverPath: "Covers/4.jpg", duration: "03:23", number: "4"},
-    {songName: "I Wish - One Direction", filePath: "./Songs/5.mp3", coverPath: "Covers/5.jpg", duration: "03:36", number: "5"},
-    {songName: "Save You Tonight - One Direction", filePath: "./Songs/6.mp3", coverPath: "Covers/6.jpg", duration: "03:24", number: "6"},
-    {songName: "I Want - One Direction", filePath: "./Songs/7.mp3", coverPath: "Covers/7.jpg", duration: "02:51", number: "7"},
-    {songName: "Gotta Be You - One Direction", filePath: "./Songs/8.mp3", coverPath: "Covers/8.jpg", duration: "04:01", number: "8"}
+    {songName: "Up All Night", filePath: "./Songs/1.mp3", coverPath: "Covers/1.jpg", duration: "03:14", number: "1"},
+    {songName: "What Makes You Beautiful", filePath: "./Songs/2.mp3", coverPath: "Covers/2.jpg", duration: "03:21", number: "2"},
+    {songName: "More Than This", filePath: "./Songs/3.mp3", coverPath: "Covers/3.jpg", duration: "03:49", number: "3"},
+    {songName: "Stole My Heart", filePath: "./Songs/4.mp3", coverPath: "Covers/4.jpg", duration: "03:23", number: "4"},
+    {songName: "I Wish", filePath: "./Songs/5.mp3", coverPath: "Covers/5.jpg", duration: "03:36", number: "5"},
+    {songName: "Save You Tonight", filePath: "./Songs/6.mp3", coverPath: "Covers/6.jpg", duration: "03:24", number: "6"},
+    {songName: "I Want", filePath: "./Songs/7.mp3", coverPath: "Covers/7.jpg", duration: "02:51", number: "7"},
+    {songName: "Gotta Be You", filePath: "./Songs/8.mp3", coverPath: "Covers/8.jpg", duration: "04:01", number: "8"}
 ]
 
 songItems.forEach((element, i) => { 
-    element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
+    element.getElementsByClassName("songName")[0].innerText = songs[i].songName + ' - One Direction';
     element.getElementsByClassName("duration")[0].innerText = songs[i].duration;
     element.getElementsByClassName("songNumber")[0].innerText = songs[i].number;    
 })
@@ -35,7 +37,6 @@ songItems.forEach((element, i) => {
 // Add GIF When Song Is Playing
 
 audioElement.addEventListener('playing', () => {
-    console.log('playing');
     document.getElementsByClassName('songNumber1')[CurrentSongIndex].innerHTML = `
     <img src='./Images/playing.gif' 
     style='width: 44px; margin-left: -1vw'>
@@ -43,7 +44,6 @@ audioElement.addEventListener('playing', () => {
 })
     
 audioElement.addEventListener('pause', () => {
-    console.log('paused');
     document.getElementsByClassName('songNumber1')[CurrentSongIndex].innerHTML = `${CurrentSongIndex+1}`;
 })
 
@@ -54,13 +54,11 @@ const masterPlayFunc = () => {
         audioElement.play();
         masterPlay.classList.remove('fa-play-circle');
         masterPlay.classList.add('fa-pause-circle');
-        gif.style.opacity = 1;
 
     } else {
         audioElement.pause();
         masterPlay.classList.remove('fa-pause-circle');
         masterPlay.classList.add('fa-play-circle');
-        gif.style.opacity = 0;
     }
 }
 
@@ -147,7 +145,6 @@ songItemPlay.forEach((element) => {
         masterSongName.innerText = songs[CurrentSongIndex].songName;
         audioElement.currentTime = 0;
         audioElement.play();
-        gif.style.opacity = 1;
         masterPlay.classList.remove('fa-play-circle');
         masterPlay.classList.add('fa-pause-circle');
     })
@@ -193,3 +190,37 @@ audioElement.addEventListener('timeupdate', () => {
 myProgressBar.addEventListener('change', () => {
     audioElement.currentTime = myProgressBar.value * audioElement.duration / 100;
 })
+
+// Volume
+
+myVolumeBar.addEventListener('mousemove', () => {
+    audioElement.volume = myVolumeBar.value / 100
+    if (myVolumeBar.value < 30) {
+        volumeIcon.classList.remove('fa-volume-up');
+        volumeIcon.classList.remove('fa-volume-up-1');
+        volumeIcon.classList.add('fa-no-volume');
+    } else if (myVolumeBar.value < 60 && myVolumeBar.value > 30) {
+        volumeIcon.classList.remove('fa-volume-up');
+        volumeIcon.classList.remove('fa-no-volume');
+        volumeIcon.classList.add('fa-volume-up-1');
+    } else if (myVolumeBar.value > 60) {
+        volumeIcon.classList.remove('fa-no-volume');
+        volumeIcon.classList.remove('fa-volume-up-1');
+        volumeIcon.classList.add('fa-volume-up');
+    }
+})
+
+volumeIcon.addEventListener('click', () => {
+    if (myVolumeBar.value == 0) {
+        myVolumeBar.value = 100;
+        volumeIcon.classList.remove('fa-no-volume');
+        volumeIcon.classList.add('fa-volume-up');
+        audioElement.volume = 1;
+    } else {
+        myVolumeBar.value = 0;
+        volumeIcon.classList.remove('fa-volume-up');
+        volumeIcon.classList.add('fa-no-volume');
+        audioElement.volume = 0;
+    }
+})
+

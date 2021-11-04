@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu&family=Varela+Round&display=swap');
 
 body {
-    background-color: antiquewhite;
+    background-color: rgb(185, 182, 182);
     overflow-x: hidden;
 }
 
@@ -229,7 +229,7 @@ nav ul li {
 
 .bottom {
     position: sticky;
-    height: 130px;
+    height: 120px;
     background-color: black;
     color: white;
     bottom: 0;
@@ -240,28 +240,85 @@ nav ul li {
 }
 
 .icons {
-    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .icons i {
-    margin: 6px;
+    margin: 5px;
     cursor: pointer;
 }
 
 #myProgressBar {
-    width: 80vw;
+    width: 40vw;
     text-align: center;
     cursor: pointer;
+    margin-top: 10px;
+}
+
+#next {
+    margin-bottom: 5px;
+}
+
+#volumeIcon {
+    position: absolute;
+    right: 215px;
+    bottom: 48px;
+}
+
+.fa-no-volume {
+    margin-right: 4px;
+}
+
+.fa-no-volume:before {
+    content: "\f026";
+}
+
+.fa-volume-up-1:before {
+    content: "\f027";
+}
+
+#myVolumeBar {
+    position: absolute;
+    right: 70px;
+    bottom: 48px;
+    cursor: pointer;
+    margin-left: 10px;
 }
 
 .songInfo {
-    position: absolute;
-    left: 10vw;
     font-family: 'Varela Round', sans-serif;
 }
 
-.songInfo img:first-child {
-    opacity: 0;
-    transition: opacity 0.5s ease-in;
-    margin-right: 1vw;
+#masterSongImage {
+    width: 80px;
+    position: absolute;
+    left: 1vw;
+    bottom: 1vw;
+}
+
+#masterSongName {
+    position: absolute;
+    left: 7vw;
+    bottom: 4vw;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1.2rem;
+}
+
+#masterSongArtist {
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    left: 7vw;
+    bottom: 2.25vw;
+    font-size: 0.9rem;
+}
+
+#masterSongArtist a {
+    text-decoration: none;
+    color: white;
+}
+
+#masterSongArtist a:hover {
+    text-decoration: underline;
 }

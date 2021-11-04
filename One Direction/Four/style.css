@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu&family=Varela+Round&display=swap');
+
+body {
+    background-color: rgb(185, 182, 182);
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* NAVBAR */
+
+nav {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 65px;
+    background-color: black;
+    color: white;
+}
+
+nav ul li {
+    padding: 0 12px;
+}
+
+.brand img {
+    width: 44px;
+    padding: 0 8px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.linksForNav a {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdownNav a {
+    text-decoration: none;
+    color: black;
+    padding: 1vh 1vw;
+    display: block;
+}
+
+.dropbtn {
+    padding: 1vh;
+}
+
+.dropbtn:hover {
+    cursor: pointer;
+}
+
+.dropContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    z-index: 1;
+    transition: all 0.5s;
+    margin-top: 1vh;
+}
+
+.dropContent a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropContent {
+    display: block;
+}
+
+/* CONTAINER */
+
+.container {
+    min-height: 72vh;
+    color: white;
+    font-family: 'Varela Round', sans-serif;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    margin: 2vh auto;
+    width: 80%;
+    border-radius: 12px;
+    padding: 34px;
+}
+
+.songListHead {
+    display: flex;
+    background: linear-gradient(to bottom, rgb(83, 83, 83), rgb(0, 0, 0));
+    padding: 2vh 2vw;
+}
+
+.songListImg {
+    width: 15vw;
+}
+
+.songListImg img {
+    width: 100%;
+    height: auto;
+}
+
+.songListInfo h1 {
+    font-size: 5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    line-height: 4rem;
+    margin-left: 2vw;
+}
+
+.songListInfo h4 {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    margin: 11vh 0 2vh 2vw;
+}
+
+.songListInfo h3 {
+    margin: 3vh 0 2vh 2vw;
+}
+
+.songListInfo h3 a {
+    text-decoration: none;
+    color: white;
+}
+
+.songListInfo h3 a:hover {
+    text-decoration: underline;
+}
+
+.songListInfo h5 {
+    font-size: 0.8rem;
+    margin: 3.5vh 0 0 0.6vh;
+}
+
+.songListInfoGrp {
+    display: flex;
+}
+
+.songTitles {
+    display: inline-flex;
+    width: 232%;
+    margin-bottom: 2vh;
+}
+
+.hashtagTitle {
+    justify-self: flex-start;
+    margin-left: 3vw;
+    margin-right: 7vw;
+    text-transform: uppercase;
+    font-weight: unset;
+    color: #b3b3b3;
+}
+
+.titleTitle {
+    justify-self: center;
+    text-transform: uppercase;
+    color: #b3b3b3;
+}
+
+.titleDuration {
+    justify-self: flex-end;
+    margin-left: 57vw;
+    text-transform: uppercase;
+    color: #b3b3b3;
+}
+
+.songList {
+    display: flex;
+    background-color: black;
+}
+
+.songItemContainer {
+    margin-top: 34px;
+}
+
+.songItem {
+    height: 60px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    background-color: black;
+    width: 80vw;
+}
+
+.songItem:hover {
+    background-color: rgba(255,255,255,.3);
+}
+
+.songNumber {
+    margin-left: 3vw;
+    color: #b3b3b3;
+}
+
+.songNumberIcon {
+    margin-left: 3vw;
+    color: #b3b3b3;
+}
+
+.songName {
+    margin-left: 2vw;
+    text-align: start;
+}
+
+.songListPlay {
+    margin-left: auto;
+    margin-right: 3vw;
+}
+
+.timestamp {
+    margin: 0 23px;
+}
+
+.timestamp i {
+    margin-left: 0.8vw;
+    cursor: pointer;
+}
+
+/* BOTTOM  */
+
+.bottom {
+    position: sticky;
+    height: 120px;
+    background-color: black;
+    color: white;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icons i {
+    margin: 5px;
+    cursor: pointer;
+}
+
+#myProgressBar {
+    width: 40vw;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#next {
+    margin-bottom: 5px;
+}
+
+#volumeIcon {
+    position: absolute;
+    right: 215px;
+    bottom: 48px;
+}
+
+.fa-no-volume {
+    margin-right: 4px;
+}
+
+.fa-no-volume:before {
+    content: "\f026";
+}
+
+.fa-volume-up-1:before {
+    content: "\f027";
+}
+
+#myVolumeBar {
+    position: absolute;
+    right: 70px;
+    bottom: 48px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.songInfo {
+    font-family: 'Varela Round', sans-serif;
+}
+
+#masterSongImage {
+    width: 80px;
+    position: absolute;
+    left: 1vw;
+    bottom: 1vw;
+}
+
+#masterSongName {
+    position: absolute;
+    left: 7vw;
+    bottom: 4vw;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1.2rem;
+}
+
+#masterSongArtist {
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    left: 7vw;
+    bottom: 2.25vw;
+    font-size: 0.9rem;
+}
+
+#masterSongArtist a {
+    text-decoration: none;
+    color: white;
+}
+
+#masterSongArtist a:hover {
+    text-decoration: underline;
+}

@@ -12,7 +12,9 @@ let songItems = Array.from(document.getElementsByClassName('songItem'));
 let songItemPlay = Array.from(document.getElementsByClassName('songItemPlay'));
 let next = document.getElementById('next');
 let previous = document.getElementById('previous');
-let songNumberIcon = Array.from(document.getElementsByClassName('songNumberIcon'));
+let songNumber1 = Array.from(document.getElementsByClassName('songNumber1'));
+let myVolumeBar = document.getElementById('myVolumeBar');
+let volumeIcon = document.getElementById('volumeIcon');
 
 
 let songs = [
@@ -24,18 +26,31 @@ let songs = [
     {songName: "If I Could Fly", filePath: "./Songs/6.mp3", coverPath: "Covers/6.jpg", duration: "03:50", number: "6"},
     {songName: "Hey Angel", filePath: "./Songs/7.mp3", coverPath: "Covers/7.jpg", duration: "04:00", number: "7"},
     {songName: "I Want To Write You A Song", filePath: "./Songs/8.mp3", coverPath: "Covers/8.jpg", duration: "02:59", number: "8"},
-    {songName: "Walking In The Wind", filePath: "./Songs/8.mp3", coverPath: "Covers/9.jpg", duration: "", number: "9"},
-    {songName: "History", filePath: "./Songs/8.mp3", coverPath: "Covers/10.jpg", duration: "", number: "10"},
-    {songName: "Olivia", filePath: "./Songs/8.mp3", coverPath: "Covers/11.jpg", duration: "", number: "11"},
-    {songName: "Temporary Fix", filePath: "./Songs/8.mp3", coverPath: "Covers/12.jpg", duration: "", number: "12"},
-    {songName: "Long Way Down", filePath: "./Songs/8.mp3", coverPath: "Covers/13.jpg", duration: "", number: "13"},
-    {songName: "Never Enough", filePath: "./Songs/8.mp3", coverPath: "Covers/14.jpg", duration: "03:33", number: "14"}
+    {songName: "Walking In The Wind", filePath: "./Songs/9.mp3", coverPath: "Covers/9.jpg", duration: "03:22", number: "9"},
+    {songName: "History", filePath: "./Songs/10.mp3", coverPath: "Covers/10.jpg", duration: "03:07", number: "10"},
+    {songName: "Olivia", filePath: "./Songs/11.mp3", coverPath: "Covers/11.jpg", duration: "02:58", number: "11"},
+    {songName: "Temporary Fix", filePath: "./Songs/12.mp3", coverPath: "Covers/12.jpg", duration: "02:55", number: "12"},
+    {songName: "Long Way Down", filePath: "./Songs/13.mp3", coverPath: "Covers/13.jpg", duration: "03:12", number: "13"},
+    {songName: "Never Enough", filePath: "./Songs/14.mp3", coverPath: "Covers/14.jpg", duration: "03:33", number: "14"}
 ]
 
 songItems.forEach((element, i) => { 
-    element.getElementsByClassName("songName")[0].innerText = `${songs[i].songName} - One Direction`;
+    element.getElementsByClassName("songName")[0].innerText = songs[i].songName + ' - One Direction';
     element.getElementsByClassName("duration")[0].innerText = songs[i].duration;
     element.getElementsByClassName("songNumber")[0].innerText = songs[i].number;    
+})
+
+// Add GIF When Song Is Playing
+
+audioElement.addEventListener('playing', () => {
+    document.getElementsByClassName('songNumber1')[CurrentSongIndex].innerHTML = `
+    <img src='./Images/playing.gif' 
+    style='width: 44px; margin-left: -1vw'>
+    `;
+})
+    
+audioElement.addEventListener('pause', () => {
+    document.getElementsByClassName('songNumber1')[CurrentSongIndex].innerHTML = `${CurrentSongIndex+1}`;
 })
 
 // Functions
@@ -45,13 +60,11 @@ const masterPlayFunc = () => {
         audioElement.play();
         masterPlay.classList.remove('fa-play-circle');
         masterPlay.classList.add('fa-pause-circle');
-        gif.style.opacity = 1;
 
     } else {
         audioElement.pause();
         masterPlay.classList.remove('fa-pause-circle');
         masterPlay.classList.add('fa-play-circle');
-        gif.style.opacity = 0;
     }
 }
 
@@ -77,21 +90,11 @@ const pauseAdd = () => {
 }
 
 const autoPlay =  () => {
-    if(CurrentSongIndex >= 7 ) {
-        CurrentSongIndex = 0
-    } else {
-        CurrentSongIndex ++
-    }
-    audioElement.src = `./Songs/${CurrentSongIndex+1}.mp3`;
-    masterSongName.innerText = songs[CurrentSongIndex].songName;
-    audioElement.currentTime = 0;
-    audioElement.play();
-    masterPlay.classList.remove('fa-play-circle');
-    masterPlay.classList.add('fa-pause-circle');
+    nextFunc();
 }
 
 const nextFunc = () => {
-    if (CurrentSongIndex >= 7) {
+    if (CurrentSongIndex >= 13) {
         CurrentSongIndex = 0
     } else {
         CurrentSongIndex ++
@@ -107,7 +110,7 @@ const nextFunc = () => {
 
 const previousFunc = () => {
     if(CurrentSongIndex <= 0) {
-        CurrentSongIndex = 7
+        CurrentSongIndex = 13
     } else {
         CurrentSongIndex --
     }
@@ -148,7 +151,6 @@ songItemPlay.forEach((element) => {
         masterSongName.innerText = songs[CurrentSongIndex].songName;
         audioElement.currentTime = 0;
         audioElement.play();
-        gif.style.opacity = 1;
         masterPlay.classList.remove('fa-play-circle');
         masterPlay.classList.add('fa-pause-circle');
     })
@@ -167,17 +169,19 @@ next.addEventListener('click', () => {
 })
 
 document.addEventListener('keyup', (event) => {
-     if (event.key === 'l') {
+    if (event.key === 'l') {
+            document.getElementsByClassName('songNumber1')[CurrentSongIndex].innerHTML = `${CurrentSongIndex+1}`;
             nextFunc();
         }
-})
-
+    })
+    
 previous.addEventListener('click', () => {
     previousFunc();
 })
 
 document.addEventListener('keyup', (event) => {
     if (event.key === 'j') {
+        document.getElementsByClassName('songNumber1')[CurrentSongIndex].innerHTML = `${CurrentSongIndex+1}`;
         previousFunc();
     }
 })
@@ -192,3 +196,37 @@ audioElement.addEventListener('timeupdate', () => {
 myProgressBar.addEventListener('change', () => {
     audioElement.currentTime = myProgressBar.value * audioElement.duration / 100;
 })
+
+// Volume
+
+myVolumeBar.addEventListener('mousemove', () => {
+    audioElement.volume = myVolumeBar.value / 100
+    if (myVolumeBar.value < 30) {
+        volumeIcon.classList.remove('fa-volume-up');
+        volumeIcon.classList.remove('fa-volume-up-1');
+        volumeIcon.classList.add('fa-no-volume');
+    } else if (myVolumeBar.value < 60 && myVolumeBar.value > 30) {
+        volumeIcon.classList.remove('fa-volume-up');
+        volumeIcon.classList.remove('fa-no-volume');
+        volumeIcon.classList.add('fa-volume-up-1');
+    } else if (myVolumeBar.value > 60) {
+        volumeIcon.classList.remove('fa-no-volume');
+        volumeIcon.classList.remove('fa-volume-up-1');
+        volumeIcon.classList.add('fa-volume-up');
+    }
+})
+
+volumeIcon.addEventListener('click', () => {
+    if (myVolumeBar.value == 0) {
+        myVolumeBar.value = 100;
+        volumeIcon.classList.remove('fa-no-volume');
+        volumeIcon.classList.add('fa-volume-up');
+        audioElement.volume = 1;
+    } else {
+        myVolumeBar.value = 0;
+        volumeIcon.classList.remove('fa-volume-up');
+        volumeIcon.classList.add('fa-no-volume');
+        audioElement.volume = 0;
+    }
+})
+

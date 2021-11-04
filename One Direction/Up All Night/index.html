@@ -14,11 +14,11 @@
         <ul>
             <li class="brand"><img src="./Images/logo.png" alt="spotify logo">Spotify</li>
             <li class="linksForNav"><a href="../../index.html">Home</a></li>
-            <li class="linksForNav"><a href="/About/about.html">About</a></li>
-            <li class="linksForNav"><a href="/Best Of 212th Decade/index.html">Best Of 212th Decade</a></li>
+            <li class="linksForNav"><a href="../../About/about.html">About</a></li>
+            <li class="linksForNav"><a href="../../Best Of 212th Decade/index.html">Best Of 212th Decade</a></li>
             <li class="dropdownNav">
                 <div class="dropdown">
-                    <span class="dropbtn" style="height: 5vh; width: 8vw; background-color: rgb(209, 206, 206);">One Direction<i class="fa fa-caret-down" style="margin-left: 0.5vw;"></i></span>
+                    <span class="dropbtn" style="height: 5vh; width: 8vw; background-color: rgb(0, 0, 0);">One Direction<i class="fa fa-caret-down" style="margin-left: 0.5vw;"></i></span>
                     <div class="dropContent">
                         <a href="../Take Me Home/index.html">Take Me Home</a>
                         <a href="../Midnight Memories/index.html">Midnight Memories</a>
@@ -97,15 +97,24 @@
     </div>
 
     <div class="bottom">
-        <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
+
         <div class="icons">
-            <i class="fa fa-3x fa-step-backward" id="previous"></i>
+            <i class="fa fa-2x fa-step-backward" id="previous"></i>
             <i class="fa fa-3x fa-play-circle" id="masterPlay"></i>
-            <i class="fa fa-3x fa-step-forward" id="next"></i>
+            <i class="fa fa-2x fa-step-forward" id="next"></i>
         </div>
+
+        <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
+
+        <i class="fa fa-volume-up" id="volumeIcon"></i>
+        <input type="range" name="VolumeRange" id="myVolumeBar" min="0" value="100" max="100">
+
         <div class="songInfo">
-            <img src="./Images/playing.gif" width="42px" alt="playing/gif" id="gif"><img src="./Images/Up All Night.jpg" width="34px"><span id="masterSongName">Up All Night - One Direction</span>
+            <img src="./Images/Up All Night.jpg" id="masterSongImage">
+            <span id="masterSongName">Up All Night</span>
+            <span id="masterSongArtist"><a href="https://open.spotify.com/artist/4AK6F7OLvEQ5QYCBNiQWHq" target="_blank">One Direction</a></span>
         </div>
+
     </div>
 
     <script src="./script.js"></script>
