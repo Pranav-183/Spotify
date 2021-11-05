@@ -3,7 +3,7 @@ console.log('Welcome to Spotify');
 
 //Initialise the variables
 let CurrentSongIndex = 0;
-let audioElement = new Audio('./Songs/1.mp3');
+let audioElement = new Audio('./songs/1.mp3');
 let masterPlay = document.getElementById('masterPlay');
 let myProgressBar = document.getElementById('myProgressBar');
 let gif = document.getElementById('gif');
@@ -18,14 +18,14 @@ let volumeIcon = document.getElementById('volumeIcon');
 
 
 let songs = [
-    {songName: "Up All Night", filePath: "./Songs/1.mp3", coverPath: "Covers/1.jpg", duration: "03:14", number: "1"},
-    {songName: "What Makes You Beautiful", filePath: "./Songs/2.mp3", coverPath: "Covers/2.jpg", duration: "03:21", number: "2"},
-    {songName: "More Than This", filePath: "./Songs/3.mp3", coverPath: "Covers/3.jpg", duration: "03:49", number: "3"},
-    {songName: "Stole My Heart", filePath: "./Songs/4.mp3", coverPath: "Covers/4.jpg", duration: "03:23", number: "4"},
-    {songName: "I Wish", filePath: "./Songs/5.mp3", coverPath: "Covers/5.jpg", duration: "03:36", number: "5"},
-    {songName: "Save You Tonight", filePath: "./Songs/6.mp3", coverPath: "Covers/6.jpg", duration: "03:24", number: "6"},
-    {songName: "I Want", filePath: "./Songs/7.mp3", coverPath: "Covers/7.jpg", duration: "02:51", number: "7"},
-    {songName: "Gotta Be You", filePath: "./Songs/8.mp3", coverPath: "Covers/8.jpg", duration: "04:01", number: "8"}
+    {songName: "Up All Night", filePath: "./songs/1.mp3", coverPath: "covers/1.jpg", duration: "03:14", number: "1"},
+    {songName: "What Makes You Beautiful", filePath: "./songs/2.mp3", coverPath: "covers/2.jpg", duration: "03:21", number: "2"},
+    {songName: "More Than This", filePath: "./songs/3.mp3", coverPath: "covers/3.jpg", duration: "03:49", number: "3"},
+    {songName: "Stole My Heart", filePath: "./songs/4.mp3", coverPath: "covers/4.jpg", duration: "03:23", number: "4"},
+    {songName: "I Wish", filePath: "./songs/5.mp3", coverPath: "covers/5.jpg", duration: "03:36", number: "5"},
+    {songName: "Save You Tonight", filePath: "./songs/6.mp3", coverPath: "covers/6.jpg", duration: "03:24", number: "6"},
+    {songName: "I Want", filePath: "./songs/7.mp3", coverPath: "covers/7.jpg", duration: "02:51", number: "7"},
+    {songName: "Gotta Be You", filePath: "./songs/8.mp3", coverPath: "covers/8.jpg", duration: "04:01", number: "8"}
 ]
 
 songItems.forEach((element, i) => { 
@@ -93,7 +93,7 @@ const nextFunc = () => {
     } else {
         CurrentSongIndex ++
     }
-    audioElement.src = `Songs/${CurrentSongIndex+1}.mp3`;
+    audioElement.src = `songs/${CurrentSongIndex+1}.mp3`;
     masterSongName.innerText = songs[CurrentSongIndex].songName;
     audioElement.currentTime = 0;
     audioElement.play();
@@ -108,7 +108,7 @@ const previousFunc = () => {
     } else {
         CurrentSongIndex --
     }
-    audioElement.src = `Songs/${CurrentSongIndex+1}.mp3`;
+    audioElement.src = `songs/${CurrentSongIndex+1}.mp3`;
     masterSongName.innerText = songs[CurrentSongIndex].songName;
     audioElement.currentTime = 0;
     audioElement.play();
@@ -141,7 +141,7 @@ songItemPlay.forEach((element) => {
         CurrentSongIndex = parseInt(e.target.id);
         e.target.classList.remove('fa-play-circle');
         e.target.classList.add('fa-pause-circle');
-        audioElement.src = `Songs/${CurrentSongIndex+1}.mp3`;
+        audioElement.src = `songs/${CurrentSongIndex+1}.mp3`;
         masterSongName.innerText = songs[CurrentSongIndex].songName;
         audioElement.currentTime = 0;
         audioElement.play();
