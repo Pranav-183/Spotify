@@ -93,7 +93,7 @@ const nextFunc = () => {
     } else {
         CurrentSongIndex ++
     }
-    audioElement.src = `songs/${CurrentSongIndex+1}.mp3`;
+    audioElement.src = `./songs/${CurrentSongIndex+1}.mp3`;
     masterSongName.innerText = songs[CurrentSongIndex].songName;
     audioElement.currentTime = 0;
     audioElement.play();
@@ -108,7 +108,7 @@ const previousFunc = () => {
     } else {
         CurrentSongIndex --
     }
-    audioElement.src = `songs/${CurrentSongIndex+1}.mp3`;
+    audioElement.src = `./songs/${CurrentSongIndex+1}.mp3`;
     masterSongName.innerText = songs[CurrentSongIndex].songName;
     audioElement.currentTime = 0;
     audioElement.play();
@@ -141,7 +141,7 @@ songItemPlay.forEach((element) => {
         CurrentSongIndex = parseInt(e.target.id);
         e.target.classList.remove('fa-play-circle');
         e.target.classList.add('fa-pause-circle');
-        audioElement.src = `songs/${CurrentSongIndex+1}.mp3`;
+        audioElement.src = `./songs/${CurrentSongIndex+1}.mp3`;
         masterSongName.innerText = songs[CurrentSongIndex].songName;
         audioElement.currentTime = 0;
         audioElement.play();
